@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Host: houme21.ru
+Sitemap: https://houme21.ru/sitemap.xml
