@@ -110,7 +110,7 @@ window.onload = () => {
     }
     /* Всплывающая подсказка над чатом */
     const showTooltip = () => {
-        if(msgBlock.hasAttribute('data-closed')){ // только при свернутом окошке
+        if(msgBlock.hasAttribute('data-closed') && !readCookie('msg')){ // только при свернутом окошке и нету куки (не заходил больше часа или сколько там)
             let promise = document.querySelector('audio').play();
             if (promise !== undefined) {
                 promise.then(_ => {
@@ -120,6 +120,7 @@ window.onload = () => {
                 });
             }
             $('[data-toggle="tooltip"]').tooltip('show');
+            document.cookie = "msg=1;max-age=3600"; // куку на час(в течении этого времени больше не будет всплывающих подсказок)
         }
     };
     //
@@ -192,3 +193,10 @@ scr.addEventListener('click', () => {
     window.scrollTo(0, 0);
 });
 
+// доставание cookie
+function readCookie(name) {
+    const matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
