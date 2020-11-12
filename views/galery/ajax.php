@@ -25,6 +25,12 @@ Modal::begin([
     'id' => 'modal-img'
 ]);
 ?>
+<style>
+    .modal-backdrop{
+        background-color: #fff;
+        opacity: .8 !important;
+    }
+</style>
 <div class="ajax-img-wrap" style="width: <?= $width ?>px;height: <?= $height ?>px">
     <button class="close" data-dismiss="modal">&times;</button>
     <figure>

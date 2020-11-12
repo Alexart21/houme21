@@ -162,13 +162,13 @@ AppAsset::register($this);
                 </div> <!-- /.row -->
 
             </div> <!-- /.container -->
-<!--            <div style="margin-bottom: 6em">fhfdhfhf</div>-->
         </footer> <!-- /#footer -->
+        <audio preload="auto" src="/audio/zvuk-icq.mp3"></audio>
         <!--Окно чата-->
-        <div id="msg-block" data-closed>
+        <div id="msg-block" data-closed data-toggle="tooltip" data-trigger="manual" title="<?= hello() ?>, я Михаил.Чем могу помочь ?">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
             <div id="msg-content">
-                <div class="msg-closed">
+                <div class="msg-closed button-anim">
                     &nbsp;&nbsp;&nbsp;<i class="fab fa-viber viber"></i> <i class="fab fa-whatsapp wats"></i> <i
                             class="fab fa-telegram-plane tg"></i>
                     <b style="position: absolute;left: 120px">Начните чат</b>

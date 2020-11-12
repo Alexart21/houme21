@@ -12,7 +12,7 @@ class ContactForm extends Model
 {
     public $name;
     public $email;
-    public $subject;
+    public $tel;
     public $body;
     public $robot;
 //    public $verifyCode;
@@ -25,12 +25,13 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'body'], 'required', 'message' => 'заполните это поле !'],
+            [['name', 'tel', 'body'], 'required', 'message' => 'заполните это поле !'],
             ['name', 'string', 'length' => [3, 100]],
+            ['tel', 'string', 'length' => [11, 30]],
             // email has to be a valid email address
             ['email', 'email', 'message' => 'Некорректный e-mail адрес !'],
-            ['subject', 'trim'],
-            ['subject', 'string', 'max' => 1000, 'tooLong' => 'не более 1000 символов'],
+//            ['subject', 'trim'],
+//            ['subject', 'string', 'max' => 1000, 'tooLong' => 'не более 1000 символов'],
             ['robot', 'myRule', 'skipOnEmpty' => false, 'skipOnError' => false], // валидируем и пустую
             // verifyCode needs to be entered correctly
             //            ['verifyCode', 'captcha'],
@@ -50,12 +51,11 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
-//            '_csrf' => '',
-'name' => 'Ваше Имя',
-'email' => 'Email',
-'subject' => 'Тема',
-'body' => 'Сообщение',
-'robot' => 'Поставьте галочку',
+        'name' => 'Ваше Имя',
+        'email' => 'Email (необязательно)',
+        'tel' => 'Тел.',
+        'body' => 'Сообщение',
+            'robot' => 'Поставьте галочку'
         ];
     }
 
@@ -64,19 +64,38 @@ class ContactForm extends Model
     {
 //        var_dump($this->robot);die;
         if ($this->validate()) {
-            $subject = $this->subject ? clr_get($this->subject) : 'Без темы';
+            $subject = 'Письмо с сайта HOUME21.RU';
             $name = mb_ucfirst(clr_get($this->name));
-            $body = 'Вам пишет <b style="font-size: 120%;text-shadow: 0 1px 0 #e61b05">' . $name . '</b><br>' . clr_get($this->email) . '<br><br><div style="font-style: italic">' . nl2br(clr_get($this->body)) . '</div>';
+            $tel = clr_get($this->tel);
+            $email = $this->email ? $this->email : null;
+            $body = 'Вам пишет <b style="font-size: 120%;text-shadow: 0 1px 0 #e61b05">' . $name . '</b><br>Тел: ' . $tel . '<br><br><div style="font-style: italic">' . nl2br(clr_get($this->body)) . '</div>';
+            if($email){
+                $body .= '<br>email: ' . clr_get($this->email);
+            }
             $success = Yii::$app->mailer->compose()// Yii::$app->params['adminEmail'] [clr_get($this->email) => $name]
             ->setTo('mail@houme21.ru')
                 ->setFrom(['mail@houme21.ru' => 'houme21.ru'])
-                ->setReplyTo([clr_get($this->email) => $name])
                 ->setSubject($subject)
-                ->setHtmlBody($body)
-                ->send();
+                ->setHtmlBody($body);
+            /* Если клиент указал необязательный email то добавляем заголовок ReplyTo */
+            if($email){
+               $success = $success->setReplyTo([$email => $name])
+                    ->send();
+            }else{
+               $success = $success->send();
+            }
 
             If ($success) {
-                die('<h3 style="color:green">Спасибо, ' . $name . ', Ваше сообщение отправлено</h3>');
+                die('<h3 style="color:green">Спасибо, ' . $name . ', Ваше сообщение отправлено</h3>
+            <script>
+            const timerId = setInterval(function(){
+                $(\'#modal\').modal(\'hide\');
+            }, 4000);
+            setTimeout(function() {
+               clearInterval(timerId);
+            }, 4000);
+            </script>
+            ');
             } else {
                 die('<h3 style="color:red">Ошибка !</h3>');
             }

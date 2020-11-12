@@ -104,11 +104,38 @@ window.onload = () => {
 
     msgBlock.style.right = (screen_w - al) / 2 + 'px'; //позиционируем в правый край родителя
 
-    function showMsg() { // показ окна чата с анимацией
-        $('#msg-block').velocity('transition.bounceIn');;
+   const showMsg = () => { // показ окна чата с анимацией
+        $('#msg-block').velocity('transition.bounceIn');
+        msgBlock.style.display = 'block';
     }
-
-    setTimeout(showMsg, 3000); // задерживаем на 3 с.
+    /* Всплывающая подсказка над чатом */
+    const showTooltip = () => {
+        if(msgBlock.hasAttribute('data-closed')){ // только при свернутом окошке
+            let promise = document.querySelector('audio').play();
+            if (promise !== undefined) {
+                promise.then(_ => {
+                    console.log('play!');
+                }).catch(err => {
+                    console.log(err.message);
+                });
+            }
+            $('[data-toggle="tooltip"]').tooltip('show');
+        }
+    };
+    //
+    const rmTooltip = () => { // убиваем
+        let tltp = document.querySelector('.tooltip');
+        if(tltp){
+            tltp.remove();
+        }
+    };
+    //
+    setTimeout(showMsg, 3000); // задержки
+    setTimeout(showTooltip, 6000);
+    setTimeout(rmTooltip, 14000);
+    msgBlock.addEventListener('mouseover', () => {
+        rmTooltip();
+    });
 
     msgContent.addEventListener('click', () => { // разворачиваем окно чата
         if (msgBlock.hasAttribute('data-closed')) { // свернуто
@@ -137,6 +164,8 @@ window.onload = () => {
 }
 //
 $(document).on('pjax:beforeSend', function () {
+    // $('.wrap').prepend('<div id="overlay"></div>');
+    // $('#overlay').show();
     document.body.style.cursor = 'progress';
     $('#container_loading').show(); // loader
 });

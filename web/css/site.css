@@ -540,7 +540,7 @@ hr {
         background: #eee;
         border: 1px solid #DB3A0A;
         border-radius: 3px;
-        width: 160px;
+        width: 200px;
         color: #111;
         padding: 20px 0;
         /*height: 200px;*/
@@ -896,31 +896,7 @@ hr {
     margin-bottom: 40px;
 }
 
-.map-canvas {
-    height: 380px;
-    border: 10px solid #efefef;
-}
 
-.contact-info {
-    margin-top: 40px;
-}
-
-.contact-form input {
-    width: 100%;
-    margin-bottom: 15px;
-}
-.contact-form textarea {
-    width: 100%;
-    max-width: 100%;
-    height: 120px;
-}
-.contact-form .mainBtn {
-    margin-top: 15px;
-    color: white;
-    background-color: #DB3A0A;
-    text-transform: uppercase;
-    border: 0;
-}
 
 #go-top {
    /* position: fixed;
@@ -1111,20 +1087,33 @@ hr {
 }
 
 input.form-control, .phone {
+    font-size: 18px;
     outline: none;
     border: none;
-    box-shadow: none !important;
-    border-bottom: 2px solid #003333 !important;
-    border-left: 1px solid rgba(0, 0, 0, .2);
-    border-right: 1px solid rgba(0, 0, 0, .2);
-    border-top: 1px solid rgba(0, 0, 0, .2);
-    border-radius: 6px;
+    border-bottom: 1px solid #003333;
+    border-bottom-left-radius: 20px;
+    /*outline: none;*/
+    padding-left: 1em;
+    font-family: corpid;
     font-weight: bold;
-    color: #003333;
+    width: 250px;
+}
+
+.site-contact input, .site-contact textarea{
+    box-shadow: 5px 5px 10px rgba(100,100,100,.3);
+}
+
+.site-contact input[type=checkbox]{
+    box-shadow: none;
+}
+
+.checkbox{
+    /*text-indent: 500px;*/
 }
 
 textarea.form-control {
     border: 1px solid #003333;
+    margin-bottom: -40px;
 }
 
 input.form-control:focus, .phone:focus {
@@ -1142,7 +1131,7 @@ textarea.form-control:focus {
 .close {
     color: #000 !important;
     font-weight: bold !important;
-    font-size: 3em !important;
+    font-size: 32px !important;
     opacity: 1 !important;
     text-transform: uppercase;
 }
@@ -1219,7 +1208,7 @@ textarea.form-control:focus {
 .galery-small > figure {
     float: left;
     margin-left: 2em;
-    margin-top: 3em;
+    margin-top: 4em;
     text-align: center;
 }
 
@@ -1734,7 +1723,7 @@ section p, article p{
     max-width: 1200px;
     margin: 0 auto;
     border: 2px solid #000;
-    box-shadow: 0 0 30px #fff;
+    box-shadow: 10px 10px 30px #999;
 }
 
 #modal-img .modal-header{
@@ -1760,6 +1749,7 @@ section p, article p{
     border: 1px solid #db3a0a;
     border-radius: 3px;
     box-shadow: 0 0 20px #fff;
+    margin-right: 30px;
     /*!*border-left: 1px solid #db3a0a;*/
     /*border-right: 1px solid #db3a0a;*!*/
     /*text-shadow: 1px 1px #000;*/
@@ -1772,7 +1762,7 @@ section p, article p{
 }
 
 .ajax-img-wrap button{
-    font-size: 4em !important;
+    font-size: 32px !important;
     position: absolute;
     top: 0;
     right: 10px;
@@ -1802,6 +1792,12 @@ section p, article p{
     box-shadow: 0 0 40px #87ffdb, 0 0 5px #FD9638 inset;
 }
 
+audio{
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
 .msg-text {
     width: 80%;
     margin: 50px auto 0 auto;
@@ -1817,6 +1813,8 @@ section p, article p{
 }
 
 .msg-closed {
+    overflow: hidden;
+    position: relative;
     display: block;
     font-size: 17px;
     color: #222;
@@ -1900,6 +1898,27 @@ section p, article p{
     top: 0 !important;
     right: 10px !important;
 }
+/* всплывающая подсказка над чатом */
+.tooltip{
+    position: fixed !important;
+    z-index: 100001 !important;
+}
+
+.tooltip-inner{
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #222;
+    background-color: #eee !important;
+    border: 1px solid var(--logo-color);
+    box-shadow: 0 0 8px inset var(--logo-color);
+}
+
+.arrow::before{
+    border-top-color: var(--logo-color) !important;
+}
+
+/**/
 
 /* анимация AJAX загрузки */
 
@@ -1938,10 +1957,62 @@ section p, article p{
     z-index: 999;
     width: 100%;
     height: 100%;
-    background-color: lime;
-    /*opacity: .95;*/
+    background-color: rgba(0,0,0,.3);
 }
 /**/
-.modal-backdrop{
-    /*display: none !important;*/
+.success-button {
+    position: relative;
+    /*margin-top: 1vw;*/
+    background: var(--logo-color);
+    color: white;
+    border: 0px solid transparent;
+    border-radius: 3px;
+    /* text-transform: uppercase; */
+    padding: 7px 16px;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+    overflow: hidden;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+    7px 7px 20px 0px rgba(0, 0, 0, .1),
+    4px 4px 5px 0px rgba(0, 0, 0, .1);
 }
+
+.success-button:hover{
+    top: -3px;
+    box-shadow: 3px 3px 10px #999;
+}
+/* здесь анимация на блоке чата */
+.button-anim:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    /*top: -180px;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    width: 10px;
+    height:60px;
+    background-color: #fff;
+    animation: shiny-btn1 5s ease-in-out infinite;
+}
+
+@-webkit-keyframes shiny-btn1 {
+    0% {
+        -webkit-transform: scale(0) rotate(45deg);
+        opacity: 0;
+    }
+    80% {
+        -webkit-transform: scale(0) rotate(45deg);
+        opacity: 0.5;
+    }
+    81% {
+        -webkit-transform: scale(4) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(50) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/**/
