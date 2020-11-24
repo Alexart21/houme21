@@ -120,7 +120,7 @@ window.onload = () => {
                 });
             }
             $('[data-toggle="tooltip"]').tooltip('show');
-            document.cookie = "msg=1;max-age=3600"; // куку на час(в течении этого времени больше не будет всплывающих подсказок)
+            document.cookie = "msg=1;max-age=3600;path=/"; // куку на час(в течении этого времени больше не будет всплывающих подсказок)
         }
     };
     //
@@ -131,9 +131,15 @@ window.onload = () => {
         }
     };
     //
-    setTimeout(showMsg, 3000); // задержки
-    setTimeout(showTooltip, 6000);
-    setTimeout(rmTooltip, 14000);
+    const rmMsgAnim = () => { // нефиг всю дорогу мерцать
+        const bar = document.querySelector('.msg-closed').classList;
+        bar.remove('button-anim');
+    };
+    // несколько задержек
+    setTimeout(showMsg, 3000); //  показываем блок с чатом
+    setTimeout(showTooltip, 6000); // показываем всплывающую подсказку/приглашение
+    setTimeout(rmTooltip, 14000); // скрываем подсказку
+    setTimeout(rmMsgAnim, 30000); // выключаем анимацию
     msgBlock.addEventListener('mouseover', () => {
         rmTooltip();
     });

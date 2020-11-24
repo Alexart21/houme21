@@ -1187,6 +1187,15 @@ textarea.form-control:focus {
     font-weight: bold;
 }
 
+.control-label[for=contactform-name]::after, .control-label[for=contactform-tel]::after, .control-label[for=contactform-body]::after{
+    color: red;
+    font-size: 150%;
+    content: '*';
+}
+
+.field-contactform-robot{
+    margin-top: 44px;
+}
 /* / Форма контактная */
 /* Галерея */
 .float-img {
@@ -2016,3 +2025,8 @@ audio{
 }
 
 /**/
+#loginform-verifycode{
+    /*border: none !important;*/
+    /*border-radius: 0 !important;*/
+    width: 110px;
+}

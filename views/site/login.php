@@ -37,7 +37,7 @@ $this->title = 'Вход в админку';
     <?= $form->field($model, 'password')->passwordInput()->label('<span class="pass-viz">Пароль</span>'); ?>
 
     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-        'template' => '<div><div style="cursor: pointer">{image}</div><div style="width: 120px;margin-top: -35px;float: right">{input}</div></div>',
+        'template' => '<div><div style="cursor: pointer">{image}</div><div style="width: 120px !important;margin-top: -35px;float: right;border: none !important;">{input}</div></div>',
     ]) ?>
 
     <?= $form->field($model, 'rememberMe')->checkbox([

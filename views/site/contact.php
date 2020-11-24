@@ -49,7 +49,7 @@ Modal::begin([
 
             <?= $form->field($model, 'body')->textarea(['rows' => 3, 'tabindex' => '4']) ?>
 
-            <?= $form->field($model, 'robot')->checkboxList(['r' => 'Я не робот']) ?>
+    <?= $form->field($model, 'robot')->checkbox(['r' => 'Я не робот']) ?><span style="float:right;color: red">*</span>
 <!--            <div class="form-group">-->
                 <?= Html::submitButton('Отправить', ['class' => 'success-button', 'name' => 'contact-button']) ?>
 <!--            </div>-->

@@ -32,7 +32,7 @@ class ContactForm extends Model
             ['email', 'email', 'message' => 'Некорректный e-mail адрес !'],
 //            ['subject', 'trim'],
 //            ['subject', 'string', 'max' => 1000, 'tooLong' => 'не более 1000 символов'],
-            ['robot', 'myRule', 'skipOnEmpty' => false, 'skipOnError' => false], // валидируем и пустую
+            ['robot', 'myRule', 'skipOnError' => false], // валидируем и пустую
             // verifyCode needs to be entered correctly
             //            ['verifyCode', 'captcha'],
         ];
@@ -40,7 +40,7 @@ class ContactForm extends Model
 
     public function myRule($attr)
     {
-        if ($this->$attr[0] != 'r') {
+        if ($this->$attr != '1') {
             $this->addError($attr, 'Вы робот ???');
         }
     }
@@ -52,18 +52,19 @@ class ContactForm extends Model
     {
         return [
         'name' => 'Ваше Имя',
-        'email' => 'Email (необязательно)',
+        'email' => 'Email',
         'tel' => 'Тел.',
         'body' => 'Сообщение',
-            'robot' => 'Поставьте галочку'
+            'robot' => 'Я не робот'
         ];
     }
 
 
     public function contactSend()
     {
-//        var_dump($this->robot);die;
+
         if ($this->validate()) {
+//            var_dump($this->robot);die;
             $subject = 'Письмо с сайта HOUME21.RU';
             $name = mb_ucfirst(clr_get($this->name));
             $tel = clr_get($this->tel);

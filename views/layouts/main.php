@@ -162,8 +162,12 @@ AppAsset::register($this);
                 </div> <!-- /.row -->
 
             </div> <!-- /.container -->
-        </footer> <!-- /#footer -->
-        <audio preload="auto" src="/audio/zvuk-icq.mp3"></audio>
+        </footer>
+        <!-- /#footer -->
+        <audio preload="auto">
+                <source src="/audio/buben.mp3" type="audio/mpeg">
+                <source src="/audio/buben.ogg" type="audio/ogg">
+        </audio>
         <!--Окно чата-->
         <div id="msg-block" data-closed data-toggle="tooltip" data-trigger="manual" title="<?= hello() ?>, я Михаил.Чем могу помочь ?">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
@@ -173,7 +177,7 @@ AppAsset::register($this);
                             class="fab fa-telegram-plane tg"></i>
                     <b style="position: absolute;left: 120px">Начните чат</b>
                 </div>
-                <img class="msg-img rounded-circle img-thumbnail" src="/img/msg.png" alt="">
+                <img class="msg-img img-circle img-thumbnail" src="/img/msg.png" alt="">
                 <div class="msg-text">
                     <div class="text-center"><?= hello() ?>, я Михаил.</div>
                     <div class="text-center text-info">выберите мессенджер и начните чат</div>
