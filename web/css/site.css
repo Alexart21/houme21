@@ -309,13 +309,14 @@ hr {
 .logo-wrapper {
     background: url(/img/logo.png) no-repeat;
     height: 100px;
+    max-width: 210px !important;
     background-position: 15px;
     opacity: 1 !important;
 }
-.logo-wrapper div {
+.company {
     display: inline-block;
     overflow: hidden;
-    padding-left: 190px;
+    padding-left: 220px;
     line-height: 100px;
     text-transform: uppercase;
     color: #DB3A0A;
@@ -500,8 +501,8 @@ hr {
         padding: inherit;
     }
 
-    .logo-wrapper div {
-        padding-left: 90px !important;
+    .company {
+        padding-left: 120px !important;
         line-height: 50px;
         font-size: 14px;
     }
@@ -1551,7 +1552,10 @@ h2{
 }
 
 @media all and (max-width: 768px), all and (max-device-width: 768px) {
-
+    .site-slider{
+        margin-top: -70px;
+        margin-left: 1px;
+    }
     /*.large-figure {
         margin-left: 1em;
         max-width: 500px !important;

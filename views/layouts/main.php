@@ -94,8 +94,8 @@ AppAsset::register($this);
                                     дизайн студия
                                 </div>
                                 <a href="/">
-                                    <div class="logo-wrapper col-md-2 col-sm-2">
-                                        <div>
+                                    <div class="logo-wrapper">
+                                        <div class="company">
                                             <?= Yii::$app->params['company'] ?>
                                         </div>
                                     </div> <!-- /.logo-wrapper -->

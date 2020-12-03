@@ -29,6 +29,7 @@ jQuery(document).ready(function($) {
         slideshowSpeed: 3000,
         animation: "fade",
         directionNav: false,
+        animationLoop: false,// застопорил
     });
 
 
@@ -96,6 +97,9 @@ for (var i = 0; i < r.length; i++) {
 /////////////
 /* Далее в обертке window.onload */
 window.onload = () => {
+    // console.log(screen_w);
+    // console.log(al);
+
     // Окно чата/мессенджеров
     let msgBlock = document.getElementById('msg-block'),
         msgContent = document.getElementById('msg-content'),
