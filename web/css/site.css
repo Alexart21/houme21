@@ -302,6 +302,10 @@ hr {
     opacity: .7;
 }
 
+.main-menu{
+   /* background-color: lime;*/
+}
+
 .site-slider{
 
 }
@@ -309,11 +313,11 @@ hr {
 .logo-wrapper {
     background: url(/img/logo.png) no-repeat;
     height: 100px;
-    max-width: 210px !important;
+    width: 360px;
     background-position: 15px;
     opacity: 1 !important;
 }
-.company {
+.logo-wrapper div {
     display: inline-block;
     overflow: hidden;
     padding-left: 220px;
@@ -501,8 +505,8 @@ hr {
         padding: inherit;
     }
 
-    .company {
-        padding-left: 120px !important;
+    .logo-wrapper div {
+        padding-left: 90px !important;
         line-height: 50px;
         font-size: 14px;
     }
@@ -1552,9 +1556,42 @@ h2{
 }
 
 @media all and (max-width: 768px), all and (max-device-width: 768px) {
+.container{
+    /*background-color: lime !important;*/
+}
+#msg-block{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.msg-text{
+    font-size: 180% !important;
+}
+
+.msg-closed-text{
+    display: block;
+    /*left: 180px;*/
+    font-size: 180% !important;
+    margin-top: -55px !important;
+}
+    .tooltip-inner{
+        font-size: 180% !important;
+    }
+
+    .msg-btn{
+        letter-spacing: 2px;
+    }
+
+        .viber-bg{
+            margin-top: -30px !important;
+        }
+button.close{
+    font-size: 40px !important;
+}
+    /**/
     .site-slider{
+        margin-left: 10px;
         margin-top: -70px;
-        margin-left: 1px;
     }
     /*.large-figure {
         margin-left: 1em;
@@ -1805,6 +1842,10 @@ section p, article p{
     box-shadow: 0 0 40px #87ffdb, 0 0 5px #FD9638 inset;
 }
 
+.msg-opened{
+    height: 400px !important;
+}
+
 audio{
     visibility: hidden;
     width: 0;
@@ -1838,6 +1879,11 @@ audio{
     /*line-height: 40px;*/
 }
 
+.msg-closed-text{
+    position: absolute;
+    left: 120px
+}
+
 .msg-closed i {
     font-size: 34px;
     /*color: lime !important;*/
@@ -1857,9 +1903,10 @@ audio{
     border: 0px solid transparent;
     border-radius: 10px;
     text-decoration: none !important;
-    font-size: 26px;
+    font-size: 30px;
     color: #fff;
-    width: 150px;
+    min-width: 160px;
+    width: 80%;
     margin: 0px auto 10px auto;
 }
 

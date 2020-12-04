@@ -94,13 +94,13 @@ AppAsset::register($this);
                                     дизайн студия
                                 </div>
                                 <a href="/">
-                                    <div class="logo-wrapper">
-                                        <div class="company">
+                                    <div class="logo-wrapper col-md-2 col-sm-2">
+                                        <div>
                                             <?= Yii::$app->params['company'] ?>
                                         </div>
                                     </div> <!-- /.logo-wrapper -->
                                 </a>
-                                <div class="col-md-10 col-sm-10 main-menu text-right">
+                                <div class="main-menu text-right">
                                     <div class="toggle-menu visible-sm visible-xs drop-menu"><i class="fa fa-bars"></i>
                                     </div>
                                     <ul class="menu-first">
@@ -162,12 +162,8 @@ AppAsset::register($this);
                 </div> <!-- /.row -->
 
             </div> <!-- /.container -->
-        </footer>
-        <!-- /#footer -->
-        <audio preload="auto">
-                <source src="/audio/buben.mp3" type="audio/mpeg">
-                <source src="/audio/buben.ogg" type="audio/ogg">
-        </audio>
+        </footer> <!-- /#footer -->
+        <audio preload="auto" src="/audio/buben.mp3"></audio>
         <!--Окно чата-->
         <div id="msg-block" data-closed data-toggle="tooltip" data-trigger="manual" title="<?= hello() ?>, я Михаил.Чем могу помочь ?">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
@@ -175,7 +171,7 @@ AppAsset::register($this);
                 <div class="msg-closed button-anim">
                     &nbsp;&nbsp;&nbsp;<i class="fab fa-viber viber"></i> <i class="fab fa-whatsapp wats"></i> <i
                             class="fab fa-telegram-plane tg"></i>
-                    <b style="position: absolute;left: 120px">Начните чат</b>
+                    <b class="msg-closed-text">Начните чат</b>
                 </div>
                 <img class="msg-img img-circle img-thumbnail" src="/img/msg.png" alt="">
                 <div class="msg-text">
