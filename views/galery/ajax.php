@@ -1,6 +1,6 @@
 <?php
 header("Cache-Control: no-store, no-cache");
-header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $imgData['0']));
+header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $imgData['timestamp']));
 
 use yii\bootstrap\Modal;
 

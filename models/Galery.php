@@ -158,17 +158,9 @@ class Galery extends ActiveRecord
     public static function getImg($id)
     {
         $id = intval($id);
-
-        $lastSql = "CALL getLastFromImg('$id')";
-        $last = ActiveRecord::findBySql($lastSql)->asArray()->one();
-        $last = $last['timestamp'];
-
         // дергаем кэш
         $imgData = Yii::$app->cache->get($id);
-//        echo gmdate("D, d M Y H:i:s \G\M\T", $imgData['timestamp']);
-//        die;
         if ($imgData) {
-            array_push($imgData, $last);
             return $imgData;
         }
 
@@ -194,7 +186,6 @@ class Galery extends ActiveRecord
 //         604800 - неделя
 //         15552000 - 180 суток
         Yii::$app->cache->set($id, $imgData, 15552000);
-        array_push($imgData, $last);
         return $imgData;
     }
 }

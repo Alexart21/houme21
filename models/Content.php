@@ -54,15 +54,9 @@ class Content extends ActiveRecord
     {
         // имя экшена
         $act = Yii::$app->requestedAction->id;
-//        var_dump($act);die;
-        $lastSql = "CALL getLastFromContent('$act')";
-        $last = ActiveRecord::findBySql($lastSql)->asArray()->one();
-        $last = $last['last_mod'];
-
         // дергаем кэш
         $data = Yii::$app->cache->get($act);
         if ($data) {
-            array_push($data, $last);
             return $data;
         }
         /* Без хранимой процедуры */
@@ -70,14 +64,13 @@ class Content extends ActiveRecord
         /* Хранимая процедура */
         $sql = "CALL getContent('$act')";
         $data = ActiveRecord::findBySql($sql)->asArray()->all();
-//        var_dump($data);die;
+//        debug($data);die;
         // set cache
         // 86400 - сутки
         // 604800 - неделя
         // 18144000 - 30 дней
         //15552000 - 180 суток
         Yii::$app->cache->set($act, $data, 15552000);
-        array_push($data, $last);
         return $data;
     }
 }

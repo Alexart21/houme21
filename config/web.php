@@ -60,6 +60,24 @@ $config = [
             'cookieValidationKey' => 'dfghdhdh2353w46tvw354645',
             'baseUrl' => '', // для чпу надо
         ],
+        /* Redis кэш */
+        /*'cache' => [
+            'class' => 'yii\redis\Cache',
+            'redis' => [
+                'hostname' => 'localhost',
+                'port' => 6379,
+                'database' => 0,
+            ]
+        ],
+        'session' => [
+            'class' => 'yii\redis\Session',
+            'redis' => [
+                'hostname' => 'localhost',
+                'port' => 6379,
+                'database' => 0,
+            ]
+        ],*/
+        /* Файловый кэш */
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -76,8 +94,8 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true, // локалка
-//            'useFileTransport' => false, // на боевом поставить false
+//            'useFileTransport' => true, // локалка
+            'useFileTransport' => false, // на боевом поставить false
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'mail.houme21.ru',

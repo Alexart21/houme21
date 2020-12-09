@@ -63,10 +63,7 @@ class SitemapController extends AppAdminController
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">'
         .$XML."\n</urlset>";
         $fp = fopen($siteRoot . 'sitemap.xml', 'w+') or die('не могу открыть файл sitemap.xml !');
-        if (fwrite($fp, $resXML)) {
-            return $this->renderFile('@app/modules/admin/views/alert.php');
-        }else {
-            die('ERROR !');
-        }
+        $result = fwrite($fp, $resXML) ? true : false;
+        return $this->renderPartial('modal', compact('result'));
     }
 }

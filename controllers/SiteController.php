@@ -80,7 +80,7 @@ class SiteController extends Controller
     {
         $model = new Content();
         $data = $model->getContent();
-        return $this->render('index', ['data' => $data]);
+        return $this->render('index', compact('data'));
     }
 
     /**

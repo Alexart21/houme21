@@ -2,11 +2,9 @@
 use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
 
-if (!empty($_GET['page'])) {
-    $page = ' | страница ' . $_GET['page'];
-} else $page = NULL;
+$page = !empty($pageNum) ? ' | страница ' . $pageNum : null;
 
-header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $content[1]));
+//header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $content[0]['last_mod']));
 //header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $content[0]['last_mod']));
 $this->title = 'Дизайн экстерьера в Чебоксарах от ' . Yii::$app->params['company'] . $page;
 $this->registerMetaTag(['name' => 'keywords', 'content' => $content[0]['keywords']]);

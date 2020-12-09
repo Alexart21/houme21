@@ -3,7 +3,7 @@
 
 //debug($data[1]);die;
 
-header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data[1]));
+header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data[0]['last_mod']));
 //header('Last-Modified:' . gmdate("D, d M Y H:i:s \G\M\T", $data[0]['last_mod']));
 $this->title = $data[0]['title'];
 $this->registerMetaTag(['name' => 'keywords', 'content' => $data[0]['keywords']]);
