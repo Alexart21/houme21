@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Europe/Moscow');
 /*header('HTTP/1.1 503 Service Temporarily Unavailable');
 header('Retry-After: 3600');
 $content = '<h1>К сожалению сайт временно недоступен</h1>
