@@ -16,7 +16,7 @@ class LoginForm extends Model
     public $username;
     public $password;
     public $rememberMe = false;
-    public $verifyCode;
+//    public $reCaptcha;
 
     private $_user = false;
 
@@ -27,14 +27,12 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
             [['username', 'password'], 'required', 'message' => 'заполните это поле !'],
-            // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
             ['password', 'validatePassword'],
-            // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+                'secret' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39', // unnecessary if reСaptcha is already configured
+                'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
         ];
     }
 
@@ -44,7 +42,7 @@ class LoginForm extends Model
             'username' => 'Логин',
             'password' => 'Пароль',
             'rememberMe' => 'Запомнить меня',
-            'verifyCode' => 'Введите код',
+//            'reCaptcha' => '',
         ];
     }
 

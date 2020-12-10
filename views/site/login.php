@@ -36,9 +36,12 @@ $this->title = 'Вход в админку';
 
     <?= $form->field($model, 'password')->passwordInput()->label('<span class="pass-viz">Пароль</span>'); ?>
 
-    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-        'template' => '<div><div style="cursor: pointer">{image}</div><div style="width: 120px !important;margin-top: -35px;float: right;border: none !important;">{input}</div></div>',
-    ]) ?>
+    <?/*= $form->field($model, 'reCaptcha')->widget(
+        \himiklab\yii2\recaptcha\ReCaptcha2::className(),
+        [
+            'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
+        ]
+    ) */?>
 
     <?= $form->field($model, 'rememberMe')->checkbox([
         'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",

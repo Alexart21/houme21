@@ -48,11 +48,15 @@ Modal::begin([
             <?= $form->field($model, 'email')->input('email', ['tabindex' => '2']) ?>
 
             <?= $form->field($model, 'body')->textarea(['rows' => 3, 'tabindex' => '4']) ?>
+    <br>
+            <?/*= $form->field($model, 'reCaptcha')->widget(
+            \himiklab\yii2\recaptcha\ReCaptcha2::className(),
+            [
+                'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
+            ]
+        ) */?>
 
-    <?= $form->field($model, 'robot')->checkbox(['r' => 'Я не робот']) ?><span style="float:right;color: red">*</span>
-<!--            <div class="form-group">-->
-                <?= Html::submitButton('Отправить', ['class' => 'success-button', 'name' => 'contact-button']) ?>
-<!--            </div>-->
+            <?= Html::submitButton('Отправить', ['class' => 'success-button', 'name' => 'contact-button']) ?>
 
             <?php ActiveForm::end(); ?>
             <?php Pjax::end(); ?>

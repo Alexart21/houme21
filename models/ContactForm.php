@@ -14,8 +14,7 @@ class ContactForm extends Model
     public $email;
     public $tel;
     public $body;
-    public $robot;
-//    public $verifyCode;
+//    public $reCaptcha;
 
 
     /**
@@ -24,26 +23,16 @@ class ContactForm extends Model
     public function rules()
     {
         return [
-            // name, email, subject and body are required
             [['name', 'tel', 'body'], 'required', 'message' => 'заполните это поле !'],
             ['name', 'string', 'length' => [3, 100]],
             ['tel', 'string', 'length' => [11, 30]],
-            // email has to be a valid email address
             ['email', 'email', 'message' => 'Некорректный e-mail адрес !'],
-//            ['subject', 'trim'],
-//            ['subject', 'string', 'max' => 1000, 'tooLong' => 'не более 1000 символов'],
-            ['robot', 'myRule', 'skipOnError' => false], // валидируем и пустую
-            // verifyCode needs to be entered correctly
-            //            ['verifyCode', 'captcha'],
+            /*[['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
+                'secret' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39', // unnecessary if reСaptcha is already configured
+                'uncheckedMessage' => 'Подтвердите, что вы не робот'],*/
         ];
     }
 
-    public function myRule($attr)
-    {
-        if ($this->$attr != '1') {
-            $this->addError($attr, 'Вы робот ???');
-        }
-    }
 
     /**
      * @return array customized attribute labels
@@ -55,7 +44,7 @@ class ContactForm extends Model
         'email' => 'Email',
         'tel' => 'Тел.',
         'body' => 'Сообщение',
-            'robot' => 'Я не робот'
+//            'reCaptcha' => '',
         ];
     }
 

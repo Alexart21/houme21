@@ -56,7 +56,7 @@ class DefaultController extends AppAdminController
             $result = $flag ? true : false;
             $flag = true;
             $header = '<h3>LastModified</h3>';
-            return $this->renderPartial('modal', compact('result', 'flag', 'header'));
+            return $this->renderAjax('modal', compact('result', 'flag', 'header'));
 
 //            return $this->renderFile('@app/modules/alexadmx/views/alert.php', compact('result'));
         }
@@ -66,10 +66,10 @@ class DefaultController extends AppAdminController
     public function actionCache()
     {
         if (Yii::$app->request->isAjax) {
-            $result = Yii::$app->cache->flush() ? true : false;
+           $result = Yii::$app->cache->flush();
             $flag = true;
             $header = '<h3>Очистка кэша</h3>';
-            return $this->renderPartial('modal', compact('result', 'flag', 'header'));
+            return $this->renderAjax('modal', compact('result', 'flag', 'header'));
         }
     }
 
@@ -111,7 +111,7 @@ class DefaultController extends AppAdminController
                 }
             }
             $header = '<h3>Очистка папок</h3>';
-            return $this->renderPartial('modal', compact('fileCount', 'dirCount', 'errCount', 'header', 'clearSize', 'dirArr'));
+            return $this->renderAjax('modal', compact('fileCount', 'dirCount', 'errCount', 'header', 'clearSize', 'dirArr'));
         }
     }
 }

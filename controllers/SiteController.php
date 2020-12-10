@@ -60,10 +60,10 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
+            /*'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
+            ],*/
         ];
     }
 
@@ -153,7 +153,7 @@ class SiteController extends Controller
             $model->callSend(); // валидация, отправка почты, вывод сообщения об успехе(ошибке) и завершение скрипта
         }
 
-        return $this->renderAjax('call', ['model' => $model]);
+        return $this->renderPartial('call', ['model' => $model]);
     }
 
 }

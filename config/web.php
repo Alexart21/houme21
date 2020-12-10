@@ -94,8 +94,8 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-//            'useFileTransport' => true, // локалка
-            'useFileTransport' => false, // на боевом поставить false
+            'useFileTransport' => true, // локалка
+//            'useFileTransport' => false, // на боевом поставить false
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'mail.houme21.ru',
@@ -127,6 +127,15 @@ $config = [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
         ],
+
+        'reCaptcha' => [
+            'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
+            'siteKeyV2' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL',
+            'secretV2' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39',
+            /*'siteKeyV3' => 'xxxxxx',
+            'secretV3' => 'xxxxxx',*/
+        ],
+
     ],
     'controllerMap' => [
         'elfinder' => [

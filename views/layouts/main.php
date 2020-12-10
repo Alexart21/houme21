@@ -170,7 +170,7 @@ AppAsset::register($this);
                     <span class="copy">Copyright &copy; 2014&mdash;<?= date('Y') ?> <i>дизайн студия</i> <span
                                 class="footer-logo"><?= Yii::$app->params['company'] ?></span>
                         <span style="margin-left: 4em;font-size: 90%;font-style: italic;">сайт разработан группой <a
-                                    href="https://alexart21.ru" style="color: #000;font-weight:bolder;font-style:normal;letter-spacing: 1px">ALEXART21.RU</a></span></span>
+                                    href="http://l917678y.beget.tech" style="color: #000;font-weight:bolder;font-style:normal;letter-spacing: 1px">ALEXART21.RU</a></span></span>
 
                     </div> <!-- /.text-center -->
 <!--                        <a href="#top" id="go-top"><i class="fa fa-angle-up"></i></a>-->

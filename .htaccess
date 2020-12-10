@@ -1,3 +1,6 @@
+# Без этого google reCapcha не хочит
+php_flag allow_url_fopen on
+
 Options +FollowSymLinks
 IndexIgnore */*
 RewriteEngine on
