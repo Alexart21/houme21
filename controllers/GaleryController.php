@@ -28,13 +28,13 @@ class GaleryController extends \yii\web\Controller
         // дергаем кэш
         $imgData = $cache->get($id);
         if ($imgData) {
-            return $imgData;
+            return $this->renderPartial('ajax', compact('imgData'));
         }
         $imgData = Galery::getImg($id);
 
         //         15552000 - 180 суток
         $cache->set($id, $imgData, 15552000);
-        return $this->renderPartial('ajax', ['imgData' => $imgData]);
+        return $this->renderPartial('ajax', compact('imgData'));
     }
 
 
