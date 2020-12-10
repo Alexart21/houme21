@@ -51,7 +51,7 @@ $config = [
             'expandImports' => true, // whether to change @import on content
             'compressOptions' => ['extra' => true], // options for compress
             'excludeFiles' => [
-//                'jquery.js', // exclude this file from minification
+                'jquery.js', // exclude this file from minification
                 'bootstrap.css', // exclude this file from minification
             ],
         ],
