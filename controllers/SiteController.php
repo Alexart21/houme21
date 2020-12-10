@@ -78,8 +78,17 @@ class SiteController extends Controller
     }*/
     public function actionIndex()
     {
+        $act = Yii::$app->requestedAction->id;
+        /* Проверяем кэш */
+        $data = Yii::$app->cache->get($act);
+        if ($data) {
+            return $this->render('index', compact('data'));
+        }
         $model = new Content();
         $data = $model->getContent();
+
+        //15552000 - 180 суток
+        Yii::$app->cache->set($act, $data, 15552000);
         return $this->render('index', compact('data'));
     }
 

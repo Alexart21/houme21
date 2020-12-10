@@ -64,22 +64,6 @@ class Galery extends ActiveRecord
         ];
     }
 
-    /* Постраничный вывод картинок */
-    public static function getAllImg($offset, $limit)
-    {
-        /* Чистый SQL */
-        /*$sql = "SELECT galery.id, galery.title, galery.price, galery.description, image.filePath, image.urlAlias, image.isMain, image.itemId FROM galery
-                INNER JOIN image
-        ON (galery.id = image.itemId) AND isMain=1 LIMIT $limit OFFSET $offset";
-        $data = ActiveRecord::findBySql($sql)->asArray()->all();*/
-
-        /* Хранимая процедура */
-        $sql = "CALL getAllImg($offset, $limit)";
-        $data = ActiveRecord::findBySql($sql)->asArray()->all();
-
-        return $data;
-    }
-
     public static function getInterieur($offset, $limit)
     {
         /* Чистый SQL */
@@ -157,13 +141,6 @@ class Galery extends ActiveRecord
     /* Вывод отдельной картинки */
     public static function getImg($id)
     {
-        $id = intval($id);
-        // дергаем кэш
-        $imgData = Yii::$app->cache->get($id);
-        if ($imgData) {
-            return $imgData;
-        }
-
         /* Чистый SQL без подготовленного запроса */
         /*$sql = "SELECT galery.id, galery.title, galery.price, galery.description, galery.full_text, galery.timestamp, image.filePath, image.isMain, image.itemId FROM galery
                 INNER JOIN image
@@ -181,11 +158,6 @@ class Galery extends ActiveRecord
         $sql = "CALL getImgById($id)";
         $imgData = ActiveRecord::findBySql($sql)->asArray()->one();
 
-//         set cache
-//         86400 - сутки
-//         604800 - неделя
-//         15552000 - 180 суток
-        Yii::$app->cache->set($id, $imgData, 15552000);
         return $imgData;
     }
 }

@@ -54,23 +54,12 @@ class Content extends ActiveRecord
     {
         // имя экшена
         $act = Yii::$app->requestedAction->id;
-        // дергаем кэш
-        $data = Yii::$app->cache->get($act);
-        if ($data) {
-            return $data;
-        }
         /* Без хранимой процедуры */
 //        $sql = "SELECT * FROM content WHERE page = '$act'";
         /* Хранимая процедура */
         $sql = "CALL getContent('$act')";
         $data = ActiveRecord::findBySql($sql)->asArray()->all();
-//        debug($data);die;
-        // set cache
-        // 86400 - сутки
-        // 604800 - неделя
-        // 18144000 - 30 дней
-        //15552000 - 180 суток
-        Yii::$app->cache->set($act, $data, 15552000);
+
         return $data;
     }
 }

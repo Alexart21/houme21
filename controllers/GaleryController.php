@@ -23,17 +23,28 @@ class GaleryController extends \yii\web\Controller
     /* Отдельная картинка */
     public function actionAjax($id)
     {
+        $id = intval($id);
+        $cache = Yii::$app->cache;
+        // дергаем кэш
+        $imgData = $cache->get($id);
+        if ($imgData) {
+            return $imgData;
+        }
         $imgData = Galery::getImg($id);
-        return $this->renderAjax('ajax', ['imgData' => $imgData]);
+
+        //         15552000 - 180 суток
+        $cache->set($id, $imgData, 15552000);
+        return $this->renderPartial('ajax', ['imgData' => $imgData]);
     }
 
 
     public function actionKitchen()
     {
         $pageNum = !empty($_GET['page']) ? (int) $_GET['page'] : null;
+        $cache = Yii::$app->cache;
         $key = Yii::$app->requestedAction->id . $pageNum;
         /* Проверяем кэш */
-        $data = Yii::$app->cache->get($key);
+        $data = $cache->get($key);
         if ($data) {
             return $this->render('kitchen', $data);
         }
@@ -61,16 +72,17 @@ class GaleryController extends \yii\web\Controller
         // 604800 - неделя
         // 18144000 - 30 дней
         //15552000 - 180 суток
-        Yii::$app->cache->set($key, $data, 15552000);
+        $cache->set($key, $data, 15552000);
         return $this->render('kitchen', $data);
     }
 
     public function actionKupe()
     {
         $pageNum = !empty($_GET['page']) ? (int) $_GET['page'] : null;
+        $cache = Yii::$app->cache;
         $key = Yii::$app->requestedAction->id . $pageNum;
         /* Проверяем кэш */
-        $data = Yii::$app->cache->get($key);
+        $data = $cache->get($key);
         if ($data) {
             return $this->render('kupe', $data);
         }
@@ -99,16 +111,17 @@ class GaleryController extends \yii\web\Controller
         // 604800 - неделя
         // 18144000 - 30 дней
         //15552000 - 180 суток
-        Yii::$app->cache->set($key, $data, 15552000);
+        $cache->set($key, $data, 15552000);
         return $this->render('kupe', $data);
     }
 
     public function actionRacks()
     {
         $pageNum = !empty($_GET['page']) ? (int) $_GET['page'] : null;
+        $cache = Yii::$app->cache;
         $key = Yii::$app->requestedAction->id . $pageNum;
         /* Проверяем кэш */
-        $data = Yii::$app->cache->get($key);
+        $data = $cache->get($key);
         if ($data) {
             return $this->render('racks', $data);
         }
@@ -137,16 +150,17 @@ class GaleryController extends \yii\web\Controller
         // 604800 - неделя
         // 18144000 - 30 дней
         //15552000 - 180 суток
-        Yii::$app->cache->set($key, $data, 15552000);
+        $cache->set($key, $data, 15552000);
         return $this->render('racks', $data);
     }
 
     public function actionInterieur()
     {
         $pageNum = !empty($_GET['page']) ? (int) $_GET['page'] : null;
+        $cache = Yii::$app->cache;
         $key = Yii::$app->requestedAction->id . $pageNum;
         /* Проверяем кэш */
-        $data = Yii::$app->cache->get($key);
+        $data = $cache->get($key);
         if ($data) {
             return $this->render('interieur', $data);
         }
@@ -175,16 +189,17 @@ class GaleryController extends \yii\web\Controller
         // 604800 - неделя
         // 18144000 - 30 дней
         //15552000 - 180 суток
-        Yii::$app->cache->set($key, $data, 15552000);
+        $cache->set($key, $data, 15552000);
         return $this->render('interieur', $data);
     }
 
     public function actionExterieur()
     {
         $pageNum = !empty($_GET['page']) ? (int) $_GET['page'] : null;
+        $cache = Yii::$app->cache;
         $key = Yii::$app->requestedAction->id . $pageNum;
         /* Проверяем кэш */
-        $data = Yii::$app->cache->get($key);
+        $data = $cache->get($key);
         if ($data) {
             return $this->render('exterieur', $data);
         }
@@ -213,7 +228,7 @@ class GaleryController extends \yii\web\Controller
         // 604800 - неделя
         // 18144000 - 30 дней
         //15552000 - 180 суток
-        Yii::$app->cache->set($key, $data, 15552000);
+        $cache->set($key, $data, 15552000);
         return $this->render('exterieur', $data);
     }
 
