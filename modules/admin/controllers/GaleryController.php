@@ -101,16 +101,12 @@ class GaleryController extends AppAdminController
 //        debug($model);die;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
             $model->image = UploadedFile::getInstance($model, 'image');
             if( $model->image ){
                 $model->upload();
-                // пишем в timestamp текущее время
-                self::lastMod($id);
-//                Yii::$app->cache->flush(); // очистка кэша
             }
-
-//            Yii::$app->session->setFlash('success', 'Картинка загружена!'); // flash сообщение;
+            self::lastMod($id);// пишем в timestamp текущее время
+            Yii::$app->cache->flush(); // очистка кэша
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -135,7 +131,7 @@ class GaleryController extends AppAdminController
         Image::deleteAll(['itemId' => $id]);
         /* Удаление фоток */
         self::removeImg($id);
-//        Yii::$app->cache->flush(); // очистка кэша
+        Yii::$app->cache->flush(); // очистка кэша
         return $this->redirect(['index']);
     }
 

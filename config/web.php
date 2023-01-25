@@ -1,7 +1,17 @@
 <?php
-
+/* Критичные данные не сливаем на GitHub храним отдельно !!! */
+$my_config = parse_ini_file(__DIR__ . '/../../secret_houme21/config.ini');
+if(!$my_config){
+    die('Не найден файл ' . __DIR__ . '/../../secret_houme21/config.ini');
+}
 $params = require(__DIR__ . '/params.php');
 
+/* Сливаем секреты с обычными данными */
+/* В этом файле доступ к секретам через $my_config[]
+    в других частях приложения через Yii::$app->params
+ */
+$params = array_merge($params, $my_config);
+//var_dump($my_config);die;
 $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -130,8 +140,8 @@ $config = [
 
         'reCaptcha' => [
             'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
-            'siteKeyV2' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL',
-            'secretV2' => '6LfRBQEaAAAAAMVJTPl6A3vWbpjzSuXdRUnQLm39',
+            'siteKeyV2' => $my_config['siteKeyV2'],
+            'secretV2' => $my_config['secretV2'],
             /*'siteKeyV3' => 'xxxxxx',
             'secretV3' => 'xxxxxx',*/
         ],

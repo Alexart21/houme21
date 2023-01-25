@@ -49,12 +49,12 @@ Modal::begin([
 
             <?= $form->field($model, 'body')->textarea(['rows' => 3, 'tabindex' => '4']) ?>
     <br>
-            <?/*= $form->field($model, 'reCaptcha')->widget(
+            <?= $form->field($model, 'reCaptcha')->widget(
             \himiklab\yii2\recaptcha\ReCaptcha2::className(),
             [
-                'siteKey' => '6LfRBQEaAAAAAEqEbZSrlYH0sQz5Q-bX58GHPNjL', // unnecessary is reCaptcha component was set up
+                'siteKey' => Yii::$app->params['siteKeyV2'], // unnecessary is reCaptcha component was set up
             ]
-        ) */?>
+        ) ?>
 
             <?= Html::submitButton('Отправить', ['class' => 'success-button', 'name' => 'contact-button']) ?>
 
